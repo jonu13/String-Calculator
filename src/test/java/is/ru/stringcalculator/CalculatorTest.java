@@ -47,5 +47,10 @@ public class CalculatorTest {
 		assertEquals(0,Calculator.add("1001"));
 	}
 
+	@Test
+	public void testAnotherSeperator(){
+		assertEquals(3, Calculator.add("//;\n1;2"));
+	}
+
 	
 }

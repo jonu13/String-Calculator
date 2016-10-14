@@ -6,16 +6,23 @@ public class Calculator {
 	
 	public static int add(String text){
 
+		
+
 		if (text.equals("")) {
 			return 0;
 		}
+		String text2;
+		char separator = checkSeparator(text);
+		if(separator != ',') {
+			text2 = (text.substring(6));
+		}
 
-		else if(isNegativeNumber(rawTextToNumberString(text))) {
+		if(isNegativeNumber(rawTextToNumberString(text,separator))) {
 			return -1;
 		}
 
 		else if (text.contains(",")) {
-			return sum(rawTextToNumberString(text));
+			return sum(rawTextToNumberString(text,separator));
 		}
 
 		else {
@@ -33,8 +40,10 @@ public class Calculator {
 		return Integer.parseInt(number);
 	}
 
-	private static String[] splitNumbers(String numbers) {
-		return numbers.split(",");
+	private static String[] splitNumbers(String numbers, char separator) {
+
+		String newSeparator = "" + separator;
+		return numbers.split(newSeparator);
 	}
 
 	private static int sum(String[] numbers) {
@@ -46,8 +55,8 @@ public class Calculator {
 		return total;
 	}
 
-	private static String makeOneLine(String text) {
-		return text.replace('\n',',');
+	private static String makeOneLine(String text, char separator) {
+		return text.replace('\n',separator);
 	}
 
 	private static Boolean isNegativeNumber(String[] numbers) {
@@ -68,8 +77,8 @@ public class Calculator {
 		return false;
 	}
 
-	private static String[] rawTextToNumberString(String text) {
-		return splitNumbers(makeOneLine(text));
+	private static String[] rawTextToNumberString(String text, char separator) {
+		return splitNumbers(makeOneLine(text, separator),separator);
 	}
 
 	private static String[] noBigNumbers(String[] numbers) {
@@ -86,6 +95,17 @@ public class Calculator {
 			}
 		}
 		return smallNumbers;
+	}
+
+	private static char checkSeparator(String text) {
+
+		char fyrstiStafur = text.charAt(0);
+		if(fyrstiStafur == '/') {
+			return text.charAt(2);
+		}
+		else {
+			return ',';
+		}
 	}
 }
 
