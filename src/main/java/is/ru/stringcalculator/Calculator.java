@@ -19,7 +19,13 @@ public class Calculator {
 		}
 
 		else {
-			return 1;
+
+			if(toInt(text) > 1000) {
+				return 0;
+			}
+			else {
+				return toInt(text);
+			}
 		}
 	}
 
