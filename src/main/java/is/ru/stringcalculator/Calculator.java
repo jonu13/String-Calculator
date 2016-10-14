@@ -4,14 +4,12 @@ public class Calculator {
 	
 	public static int add(String text){
 
-		String newText = text.replace('\n',',');
-
-		if (newText.equals("")) {
+		if (text.equals("")) {
 			return 0;
 		}
 
-		else if (newText.contains(",")) {
-			return sum(splitNumbers(newText));
+		else if (text.contains(",")) {
+			return sum(splitNumbers(makeOneLine(text)));
 		}
 
 		else {
@@ -34,6 +32,10 @@ public class Calculator {
 			total = total + toInt(number);
 		}
 		return total;
+	}
+
+	private static String makeOneLine(String text) {
+		return text.replace('\n',',');
 	}
 }
 
