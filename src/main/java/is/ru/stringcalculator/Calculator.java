@@ -1,4 +1,6 @@
 package is.ru.stringcalculator;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Calculator {
 	
@@ -6,6 +8,10 @@ public class Calculator {
 
 		if (text.equals("")) {
 			return 0;
+		}
+
+		else if(isNegativeNumber(splitNumbers(makeOneLine(text)))) {
+			return -1;
 		}
 
 		else if (text.contains(",")) {
@@ -36,6 +42,24 @@ public class Calculator {
 
 	private static String makeOneLine(String text) {
 		return text.replace('\n',',');
+	}
+
+	private static Boolean isNegativeNumber(String[] numbers) {
+
+		List<Integer> negativeNumberList = new ArrayList<>();
+
+		for(int i = 0; i < numbers.length; i++) {
+
+			if(toInt((numbers[i])) < 0) {
+				negativeNumberList.add(toInt(numbers[i]));
+			}
+		}
+
+		if(!negativeNumberList.isEmpty()) {
+			throw new IllegalArgumentException("Negatives not allowed: " + negativeNumberList.toString());
+		}
+
+		return false;
 	}
 }
 
