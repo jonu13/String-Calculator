@@ -40,7 +40,7 @@ public class Calculator {
 	private static int sum(String[] numbers) {
 
 		int total = 0;
-		for(String number : numbers) {
+		for(String number : noBigNumbers(numbers)) {
 			total = total + toInt(number);
 		}
 		return total;
@@ -70,6 +70,22 @@ public class Calculator {
 
 	private static String[] rawTextToNumberString(String text) {
 		return splitNumbers(makeOneLine(text));
+	}
+
+	private static String[] noBigNumbers(String[] numbers) {
+
+		String[] smallNumbers = new String[numbers.length];
+
+		for(int i = 0; i < numbers.length;i++) {
+
+			if(toInt(numbers[i]) > 1000) {
+				smallNumbers[i] = "0";
+			}
+			else {
+				smallNumbers[i] = numbers[i];
+			}
+		}
+		return smallNumbers;
 	}
 }
 
