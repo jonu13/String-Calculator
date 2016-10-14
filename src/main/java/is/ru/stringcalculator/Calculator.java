@@ -10,12 +10,12 @@ public class Calculator {
 			return 0;
 		}
 
-		else if(isNegativeNumber(splitNumbers(makeOneLine(text)))) {
+		else if(isNegativeNumber(rawTextToNumberString(text))) {
 			return -1;
 		}
 
 		else if (text.contains(",")) {
-			return sum(splitNumbers(makeOneLine(text)));
+			return sum(rawTextToNumberString(text));
 		}
 
 		else {
@@ -60,6 +60,10 @@ public class Calculator {
 		}
 
 		return false;
+	}
+
+	private static String[] rawTextToNumberString(String text) {
+		return splitNumbers(makeOneLine(text));
 	}
 }
 
